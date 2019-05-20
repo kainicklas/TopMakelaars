@@ -1,0 +1,55 @@
+﻿@page
+@model TopMakelaars.Pages.TopMakelaarsTuinModel
+@{
+    ViewData["Title"] = "TopMakelaarsTuin";
+}
+
+<h2>Top 10 Makelaars voor Objecten met Tuin</h2>
+
+@if (Model.RealEstateAgentsTop10 == null)
+{
+<h3>Het ophalen van de gegevens is begonnen en gaat meerdere minuten duren. <br />Open de pagina later nog een keer a.u.b.</h3>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Rangschikking
+                </th>
+                <th>
+                    Makelaar Id
+                </th>
+                <th>
+                    Makelarnaam
+                </th>
+                <th>
+                    Aantal objecten
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int rank = 1;}
+            @foreach (var realEstateAgent in Model.RealEstateAgentsTop10)
+            {
+                <tr>
+                    <td>
+                        @rank
+                    </td>
+                    <td>
+                        @realEstateAgent.Id
+                    </td>
+                    <td>
+                        @realEstateAgent.Name
+                    </td>
+                    <td>
+                        @realEstateAgent.RealEstateCount
+                    </td>
+                </tr>
+                rank++;
+            }
+        </tbody>
+    </table>
+}
+
